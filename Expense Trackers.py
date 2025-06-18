@@ -38,35 +38,51 @@ def user_choice():
         return True
 
 
-def enter_expenses():
+def enter_expenses(expense_entry, expenses_dict):
     #This will be the main function to take the user input and properly allocate expenses
     if expense_entry == "Food":
-        for key in expenses_dict["Food"]:
+        for key in expenses_dict[expense_entry]:
             print(key)
         #Thinking of adding a loop to check if the key selected includes a value or if its type(dict) then to print out all keys
         sub_category = input("This category has the stated selectable sub-categories. Which do you want to access: ").strip().title()
         if sub_category == "Groceries":
-            amount = float(input("Enter the amount of the expense for Groceries: ")) #maybe switch these to f strings and include the key
+            amount = float(input(f"Enter the amount of the expense for {sub_category} ")) #maybe switch these to f strings and include the key
             expenses_dict[expense_entry][sub_category] += amount
             print(f"The updated value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
-            return True
-
         elif sub_category == "Fast Food":
-            amount = float(input("Enter the amount of the expense for Fast Food: "))
+            amount = float(input(f"Enter the amount of the expense for {sub_category}: "))
             expenses_dict[expense_entry][sub_category] += amount
             print(f"The updated value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
-            # return True
-            #^^ Need to figure out how to make the program keep looping after the print statement. Tried adding return True as a test but no.
-    elif expense_entry == 2:
-        #If 2 and no sub-category
-        #input from user as float
-        #expenses[
-        #
-        pass
-    elif expense_entry == 3:
-        pass
-    elif expense_entry == 4:
-        pass
+
+    elif expense_entry == "Gas":
+        amount = float(input(f"Enter the amount of the expense for {expense_entry}: "))  # maybe switch these to f strings and include the key
+        expenses_dict[expense_entry] += amount
+        print(f"The updated value of {expense_entry} is: {expenses_dict[expense_entry]}")
+
+    elif expense_entry == "Phone/Internet":
+        amount = float(input(f"Enter the amount of the expense for {expense_entry}: "))  # maybe switch these to f strings and include the key
+        expenses_dict[expense_entry] += amount
+        print(f"The updated value of {expense_entry} is: {expenses_dict[expense_entry]}")
+
+    elif expense_entry == "Utilities":
+        for key in expenses_dict[expense_entry]:
+            print(key)
+        #Thinking of adding a loop to check if the key selected includes a value or if its type(dict) then to print out all keys
+        sub_category = input("This category has the stated selectable sub-categories. Which do you want to access: ").strip().title()
+        if sub_category == "Gas":
+            amount = float(input(f"Enter the amount of the expense for {sub_category}: ")) #maybe switch these to f strings and include the key
+            expenses_dict[expense_entry][sub_category] += amount
+            print(f"The updated value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
+        if sub_category == "Electricity":
+            amount = float(input(f"Enter the amount of the expense for {sub_category}: ")) #maybe switch these to f strings and include the key
+            expenses_dict[expense_entry][sub_category] += amount
+            print(f"The updated value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
+        if sub_category == "Water":
+            amount = float(input(f"Enter the amount of the expense for {sub_category}: ")) #maybe switch these to f strings and include the key
+            expenses_dict[expense_entry][sub_category] += amount
+            print(f"The updated value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
+
+    return expense_entry
 
 def continue_entering():
     pass
@@ -96,19 +112,22 @@ running = True
 
 while running:
     try:
-        choice = int(input("What would you like to do? 1.Enter Expense 2.View Totals 3.Quit: "))
+        choice = int(input("What would you like to do? 1.Enter Expense 2.View Totals 3.Print 4.Quit: "))
         if choice == 1:
             expense_entry = input("Which category would you like to enter? 1.Food 2.Gas 3.Phone/Internet 4.Utilities: ").strip().title()
             # ^^ Thinking of changing this to strings to use them as the "key" ^^ and maybe have doulbe input. have if statment check string or int?
+            enter_expenses(expense_entry, expenses_dict)
         elif choice == 2:
             view_totals()
         elif choice == 3:
+            print(expenses_dict)
+        elif choice == 4:
             print("See you next time!")
             running = False
         else:
-            print("You didn't enter a valid response. Please select from 1 to 3.")
+            print("You didn't enter a valid response. Please select from 1 to 4.")
             continue
     except:
-        print("You didn't enter a number. Please select from 1 to 3.")
+        print("You didn't enter a number. Please select from 1 to 4.")
         continue
 
