@@ -10,16 +10,14 @@
 #store expenses in a dictionary with categories as keys and lists of amounts as values
 #provide options to view total spent accross all categories, list unique categories, show expenses above a user specified amount
 
-import sys
+#Functions should only have one task, they should not be asking for input
+
+#import sys
 expense_list = ["Food", "Gas", "Insurance", "Property Tax", "Utilities"] #"Groceries", "Fast Food"
 #Still need to thing about how to incorporate lists. So far im just using a giant dictionary
-expenses_dict = {"Food": {"Groceries": 0, "Fast Food": 0},
-            "Gas": 0,
-            "Phone/Internet": 0,
-            "Utilities": {"Gas":0, "Electricity": 0, "Water": 0},
-             }
 
-running = True
+
+
 
 #Functions
 
@@ -28,6 +26,7 @@ def user_choice():
     try:
         choice = int(input("What would you like to do? 1.Enter Expense 2.View Totals 3.Quit: "))
         if choice == 1:
+
             enter_expenses()
         elif choice == 2:
             view_totals()
@@ -41,8 +40,6 @@ def user_choice():
 
 def enter_expenses():
     #This will be the main function to take the user input and properly allocate expenses
-    expense_entry = input("Which category would you like to enter? 1.Food 2.Gas 3.Phone/Internet 4.Utilities: ").strip().title()
-    # ^^ Thinking of changing this to strings to use them as the "key" ^^ and maybe have doulbe input. have if statment check string or int?
     if expense_entry == "Food":
         for key in expenses_dict["Food"]:
             print(key)
@@ -88,7 +85,30 @@ def total_threshold():
     #user input
     pass
 
-#Actual program running
+#Actual program running and variables
+expenses_dict = {"Food": {"Groceries": 0, "Fast Food": 0},
+            "Gas": 0,
+            "Phone/Internet": 0,
+            "Utilities": {"Gas":0, "Electricity": 0, "Water": 0},
+             }
+
+running = True
+
 while running:
-    running = user_choice()
+    try:
+        choice = int(input("What would you like to do? 1.Enter Expense 2.View Totals 3.Quit: "))
+        if choice == 1:
+            expense_entry = input("Which category would you like to enter? 1.Food 2.Gas 3.Phone/Internet 4.Utilities: ").strip().title()
+            # ^^ Thinking of changing this to strings to use them as the "key" ^^ and maybe have doulbe input. have if statment check string or int?
+        elif choice == 2:
+            view_totals()
+        elif choice == 3:
+            print("See you next time!")
+            running = False
+        else:
+            print("You didn't enter a valid response. Please select from 1 to 3.")
+            continue
+    except:
+        print("You didn't enter a number. Please select from 1 to 3.")
+        continue
 
