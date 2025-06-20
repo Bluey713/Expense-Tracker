@@ -125,8 +125,12 @@ def view_totals(user_view):
             print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
 
     return expense_entry
+#^^ This functions is mostly done but i think one missing item is to print out a list showing all totals like
+# food: 100
+# gas: 50
 
-def total_threshold():
+def total_threshold(search_amount, expenses_dict):
+
     #Will use to take user input and search for expense totals exceeding or equal to dependin on
     #user input
     pass
