@@ -123,7 +123,6 @@ def view_totals(user_view):
 
         if sub_category == "Water":
             print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
-
     return expense_entry
 
 def total_threshold():
