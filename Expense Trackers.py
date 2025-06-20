@@ -96,10 +96,10 @@ def view_totals(user_view):
         for key in expenses_dict[user_view]:
             print(key)
         # Thinking of adding a loop to check if the key selected includes a value or if its type(dict) then to print out all keys
-        sub_category = input("This category has the stated selectable sub-categories. Which do you want to access: ").strip().title()
-        #Need to add another if statement that takes the sub cat input and if they want to see the total not justs a specific sub cat
-        #it prints the dict key value sum. sum(expenses_dict[sub_catgory]) something like that
-        if sub_category == "Groceries":
+        sub_category = input("This category has the stated selectable sub-categories. Would you like 1.Total 2.Groceries 3.Fast Food?: ").strip().title()
+        if sub_category == "Total":
+            print(sum(expenses_dict[user_view].values()))   #Prints the sum of values in food
+        elif sub_category == "Groceries":
             print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
         elif sub_category == "Fast Food":
             print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
@@ -114,15 +114,16 @@ def view_totals(user_view):
         for key in expenses_dict[expense_entry]:
             print(key)
         #Thinking of adding a loop to check if the key selected includes a value or if its type(dict) then to print out all keys
-        sub_category = input("This category has the stated selectable sub-categories. Which do you want to access: ").strip().title()
-        if sub_category == "Gas":
+        sub_category = input("This category has the stated selectable sub-categories. Would you like 1.Total 2.Gas 3.Electricity 4.Water: ").strip().title()
+        if sub_category == "Total":
+            print(sum(expenses_dict[user_view].values()))  # Prints the sum of values in Utilities
+        elif sub_category == "Gas":
+            print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
+        elif sub_category == "Electricity":
+            print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
+        elif sub_category == "Water":
             print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
 
-        if sub_category == "Electricity":
-            print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
-
-        if sub_category == "Water":
-            print(f"The current value of {sub_category} is: {expenses_dict[expense_entry][sub_category]}")
     return expense_entry
 
 def total_threshold():
